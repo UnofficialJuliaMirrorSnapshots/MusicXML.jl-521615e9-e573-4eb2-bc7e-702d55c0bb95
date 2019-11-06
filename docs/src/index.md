@@ -30,7 +30,7 @@ prts = doc.scorepartwise.parts
 # Extracting each part
 for prt in prts
 
-    ind = findfirst(x -> prt.ID == x.ID, scprts) # returns the index of scorepart that matches the ID of part
+    ind = findfirst(x -> prt.id == x.id, scprts) # returns the index of scorepart that matches the id of part
 
     # printing the instrument name
     println(scprts[ind].name)
@@ -70,9 +70,66 @@ readmusicxml, parsemusicxml
 ```
 
 ## Types:
-```julia
-Doc, Scorepartwise, Part, Measure, Note, Unpitched, Rest, Pitch, Attributes, Time, Transpose, Clef, Key, Partlist, Scorepart, Midiinstrument, Mididevice, Scoreinstrument
+
 ```
+Doc
+	scorepartwise
+		partlist
+			scoreparts
+				name
+				id
+				scoreinstrument
+					name
+					id
+				mididevice
+					port
+					id
+				midiinstrument
+					channel
+					program
+					volume
+					pan
+					id
+		parts
+			id
+			measures
+				attributes
+					divisions
+					key
+						fifth
+						mode
+					time
+						beats
+						beattype
+					staves
+					instruments
+					clef
+						sign
+						line
+					transpose
+						diatonic
+						chromatic
+						octaveChange
+						double
+				notes
+					pitch
+						step
+						alter
+						octave
+					rest
+					unpitched
+					duration
+					type
+					accidental
+```
+
+For naming, If the fieldname is a Vector it has `s` at the end of the word.
+
+For naming, types are first letter captalized of the field names:
+```
+Doc, Scorepartwise, Part, Measure, NoteX, Unpitched, Rest, Pitch, Attributes, Time, Transpose, Clef, Key, Partlist, Scorepart, Midiinstrument, Mididevice, Scoreinstrument
+```
+
 
 ## Utilities
 ```julia
